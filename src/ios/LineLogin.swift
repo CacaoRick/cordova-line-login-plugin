@@ -17,7 +17,10 @@ import LineSDK
             return
         }
         
-        LoginManager.shared.setup(channelID: channelID, universalLinkURL: nil)
+        if (!LoginManager.shared.isSetupFinished) {
+            LoginManager.shared.setup(channelID: channelID, universalLinkURL: nil)
+        }
+        
         let result = CDVPluginResult(status: CDVCommandStatus_OK)
         commandDelegate.send(result, callbackId:command.callbackId)
     }
